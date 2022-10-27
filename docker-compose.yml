@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  postgres:
+    container_name: 'invitee-mngr-postgres'
+    image: postgres
+    ports:
+      - '5436:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=invt-mngr-db 
+volumes:
+  pgdata:
