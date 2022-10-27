@@ -1,32 +1,30 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { House } from "../../house/entity/house";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { EventPerson } from '../../event/entity/event.person.entity';
+import { House } from '../../house/entity/house.entity';
 
 @Entity()
-export class Person{
-
+export class Person {
   @PrimaryGeneratedColumn()
   id!: string;
 
   @Column()
   name!: string;
 
-  @Column()
-  houseName: string;
+  @Column({ nullable: true })
+  phone?: string;
 
-  @Column()
-  phone: string;
+  @Column({ nullable: true })
+  mainPlace?: string;
 
-  @Column()
-  mainPlace: string;
+  @Column({ nullable: true })
+  subPlace?: string;
 
-  @Column()
-  subPlace: string;
-
-  @Column()
-  notes: string;
-
-  
+  @Column({ nullable: true })
+  notes?: string;
 
   // @ManyToOne(() => House, (house) => house.members)
   // house: House;
+
+  @OneToMany(() => EventPerson, (eventPerson) => eventPerson.person)
+  eventPerson?: EventPerson;
 }
